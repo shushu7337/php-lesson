@@ -1,20 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>作業說明</title>
-</head>
-<body>
-    
+<h1>資料庫連線</h1>
 <?php
-$month=date("m");
-if(isset($_GET["month"])){
-    $month=$_GET["month"];
-}
+// 下面這行要背起來
+$dsn="mysql:host=localhost;charset=utf8;dbname=students";
+$pdo=new PDO($dsn,'root','');
+
+$sql="select * from students";
+$rows=$pdo->query($sql)->fetchAll();
+
+// rows===一條資料
+//查詢語句 $pdo->query($sql) 送進 $sql="select * from students";
+// ->fetchAll() 取出資料
+
+echo $rows[1]['name'];
+echo "<hr>";
+echo $rows[1][3];
+echo "<hr>";
+echo $rows[1]['addr'];
+echo"<hr>";
+echo $rows[1][5];
+echo "<hr>";
+echo $rows[2]['grad_at'];
+echo "<hr>";
+echo $rows[2][10];
+echo "<hr>";
+echo "<pre>";
+print_r($rows);
+echo "</pre>";
+
 ?>
-<a href="index.php?month=<?=$month-1;?>">上一月(<?=$month-1;?>)</a>
-<span>本月(<?=$month;?>)</span>
-<a href="index.php?month=<?=$month+1;?>">下一月(<?=$month+1;?>)</a>
-</body>
-</html>
