@@ -20,21 +20,20 @@ if (isset($_GET["year"])) {
 if (isset($_GET["month"])) {
   $month = $_GET["month"];
 } else {
-  $month = date('M');
+  $month = date('m');
 }
+
 
 // 上下月處理
 if ($month < 1) {
   $month = 12;
   $year -= 1;
 }
-if (
-  $month >
-  12
-) {
+if ($month >12) {
   $month = 1;
   $year += 1;
 }
+echo $year.$month;  
 ?>
 <div class="container-fluid">
   <div class="row justify-content-center">
@@ -52,9 +51,9 @@ if (
 <div class="container-fluid callyear">
   <div class="introm row justify-content-center ">
     <div class="prev col-sm-2 offset-1 justify-content-center"><a href="layout.php?month=<?= $month - 1 ?>&year=<?= $year ?>"><i class="fa fa-arrow-circle-left"></i>Prev</a></div>
-    <div class="col-sm-2 justify-content-center">&nbsp&nbsp<?= $year; ?>&nbsp&nbsp</div>
+    <div class="col-sm-2 justify-content-center"><?= $year; ?></div>
     <div class="col-sm-1 justify-content-center">/</div>
-    <div class="col-sm-2 ">&nbsp<?= date('M',strtotime("$year-$month")); ?>&nbsp</div>
+    <div class="col-sm-2 "><?= date('M',strtotime("$year-$month")); ?></div>
     <div class="next col-sm-2 justify-content-center "><a href="layout.php?month=<?= $month + 1 ?>&year=<?= $year ?>">Next<i class="fa fa-arrow-circle-right"></i></a></div>
   </div>
 </div>
@@ -92,6 +91,7 @@ if (
           </thead>
           <tbody>
             <?php
+           
               $firstDay = date("$year-$month-01");
               $firstDayWeek = date("w", strtotime($firstDay)); //第一天 
               $WeekDays =date("t", strtotime($firstDay));
