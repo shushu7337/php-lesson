@@ -40,29 +40,37 @@
                 <td>註冊時間</td>
                 <td>生日</td>
                 <td>email</td>
-                <td collspan-2>操作</td>
+                <td collspan 2>操作</td>
               <?php
+
+
+            // type 1
+
+            //     foreach($rows as $row){
+
+            //       echo "<tr>"."<td>".$row['id']."</td>"."<td>".$row['name']."</td>"."<td>".$row['tel']."</td>"."<td>".$row['pw']."</td>"."<td>".$row['acc']."</td>"."<td>".$row     ['create_time']."</td>"."<td>".$row['birthday']."</td>"."<td>".$row['email']."</td>"."<td>"."<button>"."編輯"."</button>"."</td>"."<td>"."<button>"."刪除"."</button>"."</td>"."<br>"."</tr>";
+            //   }
+
+            // type 2
+
                 foreach($rows as $row){
-
-                  echo "<tr>"."<td>".$row['id']."</td>"."<td>".$row['name']."</td>"."<td>".$row['tel']."</td>"."<td>".$row['pw']."</td>"."<td>".$row['acc']."</td>"."<td>".$row     ['create_time']."</td>"."<td>".$row['birthday']."</td>"."<td>".$row['email']."</td>"."<td>"."<button>"."編輯"."</button>"."</td>"."<td>"."<button>"."刪除"."</button>"."</td>"."<br>"."</tr>";
-              }
-                // foreach($rows as $row){
-                // echo "<tr>";   
-                // echo "<td>".$row['id']."</td>"
-                // echo "<td>".$row['acc']."</td>"
-                // echo "<td>".$row['pw']."</td>"
-                // echo "<td>".$row['name']."</td>"
-                // echo "<td>".$row['tel']."</td>"
-                // echo "<td>".$row['create_time']."</td>"
-                // echo "<td>".$row['birthday']."</td>"
-                // echo "<td>".$row['email']."</td>"
-                // echo     <td>;
-                //
+                echo "<tr>";   
+                echo "<td>".$row['id']."</td>";
+                echo "<td>".$row['acc']."</td>";
+                echo "<td>".$row['pw']."</td>";
+                echo "<td>".$row['name']."</td>";
+                echo "<td>".$row['tel']."</td>";
+                echo "<td>".$row['create_time']."</td>";
+                echo "<td>".$row['birthday']."</td>";
+                echo "<td>".$row['email']."</td>";
                 
-
-
-
-                // }
+                echo "<td>";
+                echo "<a href='edit_user.php?user=".$row['id']."'><button>編輯</button></a>";
+                echo "<a href='delete_user.php?user=".$row['id']."'><button>刪除</button></a>";
+                echo "</td>";
+                echo "</tr>";
+                
+                }
               ?>
              </tr>
         </table>
