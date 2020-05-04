@@ -19,8 +19,8 @@
         height: 100%;
     }
     .box{
-        height:100px;
-        width: 300px;
+        height:130px;
+        width: 450px;
         box-shadow: 1px 1px 3px #000;
         border-radius: 10px 10px;
     }
@@ -29,36 +29,78 @@
     }
     input{
         width: 100px;
-        border-radius: 30px 30px;
+        border-radius: 5px 5px;
+        margin: 10px 0 0 10px;
+        border: 1px solid #999999;
+    }
+    .login{
+        text-align: center;
+    }
+    .alert{
+        font-size: 10px;
+        color: #FF0000;
+        font-weight: bold;
+        opacity: 0.4;
     }
     </style>
 <body>
-<?php
-$dsn="mysql:host=localhost;charset=utf8;dbname=school";
-$pdo=new PDO($dsn,"root","");
-date_default_timezone_set("Asia/Taipei");
-?>
-<h1>Login</h1>
-<div class="container col-12 row justify-content-center">
-    
-    <div class="box col-6 row justify-content-center">
-        <form action="list_user.php" method="post">
-            <div class="row">
-                <div class=" col-6 row justify-content-center">
-                    <label for="name">account:</label>
-                    <input type="text" name="name" value="" require>
-                </div>
-                <div class="col-6 row justify-content-center">
-                    <label for="password">password:</label>
-                    <input type="text" name="password" value="" require>
-                </div>
-                <div class="col-12-align-self-end row justify-content-center ">
-                    <div class=""><input type="submit" value="Login">
-                </div>
 
-            </div>
-        </form>
+<h1>Login</h1>
+<div class="container box col-12 ">
+    <div class="row justify-content-center ">
+            <form action="chklogin.php" method="post">
+                
+                <div class="row">
+                    <div class=" col-6  ">
+                        <label for="acc">account:</label>
+                        <input type="text" name="acc" id="acc" require>
+                    </div>
+                    <div class="col-6  ">
+                        <label for="pw">password:</label>
+                        <input type="text" name="pw" id="pw" require>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="">
+                            <div class="login"><input type="submit" value="Login" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="">
+                            <div class="login"><input type="reset" value="Reset">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert row justify-content-center align-items-end">
+                    <?php
+                    // ver 1
+                        //  if(isset($_GET['status'])){
+                        //         if($_GET['status']=='false'){
+                        //              echo "--帳號或密碼錯誤--";
+                        //         }
+                        //     }
+                    // ver 2
+                    if(isset($_GET['status'])){
+                        switch($_GET['status']){
+                            case 'false':
+                              echo "--帳號或密碼錯誤--";
+                            break;
+                            case 'true':
+                              echo "get=".$_GET['id'];
+                              header("location:list_user.php?id=".$_GET['id']);
+                            break;
+                        }
+                        }
+                    ?>
+                </div>
+            </form>
+            
     </div>
+    
+    
 </div>
 </body>
 </html>

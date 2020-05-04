@@ -1,3 +1,11 @@
+<?php
+    if(!isset($_GET['id'])){
+        echo "--無權限登入--";
+        echo "<a href=login.php?>返回登入頁面</a>";
+        exit();
+    }
+                
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +28,15 @@
 <body>
     <div class="container">
         <h3>會員列表</h3>
+        
+    <div class="back">
+        <a href="`login.php?status=true&id=<?=$_GET['id'];?>"></a>
+    </div>
         <?php
-        $dsn="mysql:host=localhost;charset=utf8;dbname=school";
-        $pdo=new PDO($dsn,"root","");
-        date_default_timezone_set("Asia/Taipei");
-
+        include "dbconnect.php";
+        $sql="select * from `student` where `id`='".$_GET['id']."'";
+        $user=$pdo->query($sql)->fetch();
+        echo "<h3>歡迎".$user['name']."</h3>";
         $sql="select * from `student`";
         $rows=$pdo->query($sql)->fetchAll();
 
@@ -75,5 +87,6 @@
              </tr>
         </table>
     </div>
+    
 </body>
 </html>

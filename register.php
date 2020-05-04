@@ -25,6 +25,10 @@
         }
         label{
             width: 80px;
+            margin: 10px 10px 0 0;
+        }
+        input{
+            margin: 10px 10px 0 0;
         }
     </style>
 <body>
