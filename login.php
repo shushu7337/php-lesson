@@ -44,13 +44,17 @@
     }
     </style>
 <body>
-
-<h1>Login</h1>
-<div class="container box col-12 ">
-    <div class="row justify-content-center ">
+    
+    <h1>Login</h1>
+    <div class="container box col-12 ">
+        <div class="row justify-content-center ">
             <form action="chklogin.php" method="post">
-                
-                <div class="row">
+                <div class="row ">
+                    
+                    <?php
+                    $showLogin=true;
+                    if($showLogin==true){
+                        ?>
                     <div class=" col-6  ">
                         <label for="acc">account:</label>
                         <input type="text" name="acc" id="acc" require>
@@ -74,8 +78,14 @@
                         </div>
                     </div>
                 </div>
+                <?php
+                }else{
+                    echo "已登入";
+                }
+                ?>
                 <div class="alert row justify-content-center align-items-end">
                     <?php
+                    
                     // ver 1
                         //  if(isset($_GET['status'])){
                         //         if($_GET['status']=='false'){
@@ -83,14 +93,16 @@
                         //         }
                         //     }
                     // ver 2
-                    if(isset($_GET['status'])){
-                        switch($_GET['status']){
+                    if(isset($_COOKIE['status'])){
+                        // echo "status".$_COOKIE['status'];
+                        switch($_COOKIE['status']){
                             case 'false':
                               echo "--帳號或密碼錯誤--";
                             break;
                             case 'true':
-                              echo "get=".$_GET['id'];
-                              header("location:list_user.php?id=".$_GET['id']);
+                            //   echo "get=".$_COOKIE['id'];
+                              $showLogin=false;
+                            //   header("location:list_user.php?id=".$_COOKIE['id']);
                             break;
                         }
                         }

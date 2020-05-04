@@ -1,5 +1,5 @@
 <?php
-    if(!isset($_GET['id'])){
+    if(!isset($_COOKIE['id'])){
         echo "--無權限登入--";
         echo "<a href=login.php?>返回登入頁面</a>";
         exit();
@@ -30,25 +30,33 @@
         <h3>會員列表</h3>
         
     <div class="back">
-        <a href="`login.php?status=true&id=<?=$_GET['id'];?>"></a>
+        <?php
+        
+        echo "<a href='login.php'>回登入頁面</a>";
+        ?>
     </div>
         <?php
         include "dbconnect.php";
-        $sql="select * from `student` where `id`='".$_GET['id']."'";
+        $sql="select * from `student` where `id`='".$_COOKIE['id']."'";
+        
         $user=$pdo->query($sql)->fetch();
+        // user的資料
+       
         echo "<h3>歡迎".$user['name']."</h3>";
         $sql="select * from `student`";
+        
         $rows=$pdo->query($sql)->fetchAll();
+        // 全部人的資料
 
         ?>
    
         <table>
             <tr>
                 <td>ID</td>
+                <td>帳號</td>
+                <td>密碼</td>
                 <td>姓名</td>
                 <td>電話</td>
-                <td>密碼</td>
-                <td>帳號</td>
                 <td>註冊時間</td>
                 <td>生日</td>
                 <td>email</td>

@@ -24,8 +24,14 @@ if(!empty($_POST['acc'])){
     //這裡已經有跟資料庫做檢查作用
 
     //搭配ver3用
-    $user=$pdo->query($sql)->fetchColumn();
-    // echo $sql;
+    // type 1
+    // $user=$pdo->query($sql)->fetchColumn();
+
+    // type 2
+    $user=$pdo->query($sql)->fetch();
+// 說明：
+//      type1 fetchColumn()跟下方搭配的變數不能為陣列，因為type1的$user為數值
+//      type2 fetch()所讀取的資料為陣列資料，在下方變數即可使用$user['id']陣列
 
     //ver1
     //所以這裡就不用再檢查一次，而且程式密碼有機密上的問題，不建議直接把資料撈出來會有被盜取的問題
@@ -38,14 +44,31 @@ if(!empty($_POST['acc'])){
 
 
     //ver2
+    // type 1
+    // if(!empty($user)){
+    //     echo "登入成功";
+    //     setcookie("id",$user,time()+60*3);
+    //     setcookie("status",'true',time()+60*3);
+    //     header("location:list_user.php");
+    // }else{
+    //     echo "登入失敗";
+    //     setcookie("status",'false',time()+10);
+    //     header("location:login.php");
+    // }
+    
+    // type 2
+
     if(!empty($user)){
         echo "登入成功";
-        header("location:list_user.php?id=".$user['id']);
+        setcookie("id",$user['id'],time()+60*3);
+        setcookie("status",'true',time()+60*3);
+        header("location:list_user.php");
     }else{
         echo "登入失敗";
-        header("location:login.php?status=false");
+        setcookie("status",'false',time()+10);
+        header("location:login.php");
     }
-    
+
     //ver3
     // if($user>0){
     //     echo "登入成功";
