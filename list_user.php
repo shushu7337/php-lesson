@@ -29,7 +29,7 @@
     <div class="container">
         <h3>會員列表</h3>
         
-    <div class="back">
+    <div>
         <?php
         
         echo "<a href='login.php'>回登入頁面</a>";
@@ -38,13 +38,11 @@
         <?php
         include "dbconnect.php";
         $sql="select * from `student` where `id`='".$_COOKIE['id']."'";
-        
         $user=$pdo->query($sql)->fetch();
         // user的資料
-       
+
         echo "<h3>歡迎".$user['name']."</h3>";
         $sql="select * from `student`";
-        
         $rows=$pdo->query($sql)->fetchAll();
         // 全部人的資料
 
