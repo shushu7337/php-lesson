@@ -37,12 +37,15 @@
     </div>
         <?php
         include "dbconnect.php";
+        // 印出單一個
         $sql="select * from `student` where `id`='".$_COOKIE['id']."'";
+
+        // 這裡是印出全部
+        // $sql="select * from `student`";
+
         $user=$pdo->query($sql)->fetch();
         // user的資料
-
         echo "<h3>歡迎".$user['name']."</h3>";
-        $sql="select * from `student`";
         $rows=$pdo->query($sql)->fetchAll();
         // 全部人的資料
 
