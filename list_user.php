@@ -40,10 +40,11 @@
         <?php
         include "dbconnect.php";
         $sql="select * from `student` where `id`='".$_SESSION['id']."'";
+        // $sql="select * from `student`";
+        
         echo $sql;
         $user=$pdo->query($sql)->fetch();
         echo "<h3>歡迎".$user['name']."</h3>";
-        $sql="select * from `student`";
         $rows=$pdo->query($sql)->fetchAll();
         ?>
    
