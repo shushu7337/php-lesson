@@ -32,18 +32,15 @@
     label {
         width: 80px;
     }
-
     input {
         width: 100px;
         border-radius: 5px 5px;
         margin: 10px 0 0 10px;
         border: 1px solid #999999;
     }
-
     .login {
         text-align: center;
     }
-
     .alert {
         font-size: 10px;
         color: #FF0000;
@@ -57,37 +54,23 @@
     <div class="container box col-12 ">
         <div class="row justify-content-center ">
             <form action="chklogin.php" method="post">
-                <div class="row">
-                    
-                    
-                </div>
-
-                <div class="alert row justify-content-center align-items-end">
-                    <?php
-                    // ver 1
-                    //  if(isset($_GET['status'])){
-                    //         if($_GET['status']=='false'){
-                    //              echo "--帳號或密碼錯誤--";
-                    //         }
-                    //     }
-                    // ver 2
-                    $showLogin = true;
-                    if (isset($_COOKIE['status'])) {
-                        // echo "status".$_COOKIE['status'];
-                        switch ($_COOKIE['status']) {
-                            case 'false':
-                                echo "--帳號或密碼錯誤--";
-                                break;
-                            case 'true':
-                                //   echo "get=".$_COOKIE['id'];
-                                $showLogin = false;
-                                //   header("location:list_user.php?id=".$_COOKIE['id']);
-                                break;
-                        }
-                    }
-                    ?>
-                </div>
-                <div class="row">
+                <div class="row justify-content-center">
+                    <p class="alert row ">
+                        <?php
+                            $showLogin = true;
+                            session_start();
+                            if (isset($_SESSION['status'])) {
+                                switch ($_SESSION['status']) {
+                                    case 'false':
+                                        echo "--帳號或密碼錯誤--";
+                                        break;
+                                    case 'true':
+                                        $showLogin = false;
+                                        break;
+                                }
+                            }
+                        ?>
+                    </p>
                     <?php
                     if ($showLogin == true) {
                     ?>
@@ -106,7 +89,7 @@
                     <?php
                     } else {
                         echo "已登入";
-                        echo "<a href='logout.php'>登出</a>";
+                        echo "<br><a href='logout.php'>登出</a>";
                     }
                     ?>
                 </div>

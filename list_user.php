@@ -1,10 +1,12 @@
 <?php
-    if(!isset($_COOKIE['id'])){
+
+// session的預設時間為20分鐘，若有持續與網頁互動會一直延續
+    session_start();
+    if(!isset($_SESSION['id'])){
         echo "--無權限登入--";
         echo "<a href=login.php?>返回登入頁面</a>";
         exit();
     }
-                
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,15 +39,12 @@
     </div>
         <?php
         include "dbconnect.php";
-        $sql="select * from `student` where `id`='".$_COOKIE['id']."'";
+        $sql="select * from `student` where `id`='".$_SESSION['id']."'";
+        echo $sql;
         $user=$pdo->query($sql)->fetch();
-        // user的資料
-
         echo "<h3>歡迎".$user['name']."</h3>";
         $sql="select * from `student`";
         $rows=$pdo->query($sql)->fetchAll();
-        // 全部人的資料
-
         ?>
    
         <table>
@@ -60,17 +59,6 @@
                 <td>email</td>
                 <td collspan 2>操作</td>
               <?php
-
-
-            // type 1
-
-            //     foreach($rows as $row){
-
-            //       echo "<tr>"."<td>".$row['id']."</td>"."<td>".$row['name']."</td>"."<td>".$row['tel']."</td>"."<td>".$row['pw']."</td>"."<td>".$row['acc']."</td>"."<td>".$row     ['create_time']."</td>"."<td>".$row['birthday']."</td>"."<td>".$row['email']."</td>"."<td>"."<button>"."編輯"."</button>"."</td>"."<td>"."<button>"."刪除"."</button>"."</td>"."<br>"."</tr>";
-            //   }
-
-            // type 2
-
                 foreach($rows as $row){
                 echo "<tr>";   
                 echo "<td>".$row['id']."</td>";
@@ -87,7 +75,6 @@
                 echo "<a href='delete_user.php?user=".$row['id']."'><button>刪除</button></a>";
                 echo "</td>";
                 echo "</tr>";
-                
                 }
               ?>
              </tr>
