@@ -53,7 +53,7 @@
         $sql="select * from $table ";
         // 範例二
 
-        // 判斷是否為字串 且 是否為陣列 並重組為sql語句
+        // 判斷...$arg是否為字串 且 是否為陣列 並重組為sql語句
         if(isset($arg[0]) && is_array($arg[0])){
             // 改用sprinf此處也要改用陣列而非字串，否則會有錯誤。
             $tmp=[];
@@ -63,13 +63,14 @@
                 $tmp[]=sprintf("`%s`='%s'",$key,$value);
             }
             $sql=$sql." where " . implode(" && ",$tmp);
+            
         }
         // 判斷第三個參數
         if(isset($arg[1])){
             $sql=$sql . $arg[1];
         }
-
         echo $sql;
+        echo "<hr>";
         return $pdo->query($sql)->fetchAll();
     }
     
@@ -77,13 +78,11 @@
 
     echo "<hr>";
 
-    // !!!! 雖然function all 裡面有兩個變數，而此處只有 invoice 也能正常撈出資料。 !!!!!
+    // !!!! 雖然function all 裡面有兩個變數，而此處只有帶入 invoice 也能正常撈出資料。 !!!!!
     // print_r(all("invoice"));
     
     
     // 範例一
-    // 將where period='1'此處變成陣列
-    // $rows=all('invoice',"where period='1'");
     $rows=all('invoice');
     foreach($rows as $row){
         echo $row['id'] . "-";
@@ -96,6 +95,8 @@
     
     echo "<p>有帶參數</p>";
     echo "<hr>";
+    // 將where period='1'此處變成陣列
+    // $rows=all('invoice',"where period='1'");
     // 此處可以自定義要找尋的資料內容，自行增減
     $rows=all('invoice',["year"=>"2020","period"=>"1","code"=>"fg"]);
     foreach($rows as $row){
@@ -121,7 +122,8 @@
     echo "<p>不帶條件參數</p>";
     echo "<hr>";
     // 可帶 [](陣列) 與 ""(空值)
-    $rows=all('invoice',[]," order by id desc");
+    // 補充說明：若要帶入[]的話，需另加判斷式來濾掉陣列
+    $rows=all('invoice',""," order by id desc");
     foreach($rows as $row){
         echo $row['id'] . "-";
         echo $row['code'] . "-";
