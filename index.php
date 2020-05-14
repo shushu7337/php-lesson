@@ -1,57 +1,35 @@
+
+
 <?php
+$dsn="mysql:host=localhost;charset=utf8;dbname=invoice";
+$pdo=new PDO($dsn,'root',"");
+date_default_timezone_set("Asia/Taipei");
+session_start();
 
-    $a=false;
-    echo !$a;
-    echo "<hr>";
-    echo $a;
-    $b=1;
-    echo $b++;
-    echo "<hr>";
-    // 算術運算子 +,-,*,/
-    
-    $a=2;
-    $b=5;
-    echo $a+$b;
-    echo "<hr>";
+// $rows=all('invoice');
+// foreach($rows as $row){
+//     echo $row['number'];
+//     echo "<br>";
+//     echo $row['expend'];
+// }
+$row=find('invoice',5);
+if(is_array($row)){
+    echo $row['number'].'<br>';
+    echo $row['expend'];
+}else{
+    echo $row;
+}
 
-    // 字串運算子
-
-    $a="A";
-    $b="B";
-    echo $a;
-    echo "<br>";
-    echo $b;
-    $c=$a . $b;
-    $d=$a + $b;
-    echo "<hr>";
-    echo $c;
-    echo "<hr>";
-    echo $d;
-    echo "<br>";
-    $e="123";
-    $f="333";
-    echo $e;
-    echo "<br>";
-    echo $f;
-
-    echo "<br>";
-    // 三元運算子
-    $a=6;
-    echo ($a>0)?"很貴":"免費";
-    echo "<hr>";
-
-    if($a>0){
-        echo "很貴";
+function find($table,$id){
+    global $pdo;
+    $sql="select * from $table where id ='$id'";
+    $row=$pdo->query($sql)->fetch();
+    if(empty($row)){
+        return "無相關資料";
     }
-    else{
-        echo "免費";
-    }
+    return $row;
+}
 
-    echo"<hr>";
-echo "hello world";
-$aa;
-$bb;
 
-$ee;
-$cc;
+
 ?>
