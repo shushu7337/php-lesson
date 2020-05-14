@@ -1,21 +1,35 @@
+
+
 <?php
+$dsn="mysql:host=localhost;charset=utf8;dbname=invoice";
+$pdo=new PDO($dsn,'root',"");
+date_default_timezone_set("Asia/Taipei");
+session_start();
 
-stars(8);
-for($i=0;$i<10;$i++){
-    $rand=rand(5,20);
-    stars($rand);
+// $rows=all('invoice');
+// foreach($rows as $row){
+//     echo $row['number'];
+//     echo "<br>";
+//     echo $row['expend'];
+// }
+$row=find('invoice',5);
+if(is_array($row)){
+    echo $row['number'].'<br>';
+    echo $row['expend'];
+}else{
+    echo $row;
 }
 
-function stars($s){ 
-    for($i=0 ; $i<$s ; $i++){
-       for($j=$i ; $j<$s-1 ; $j++){
-         echo "&nbsp&nbsp";
-         echo "*";
-        }
-        echo "<br>";
+function find($table,$id){
+    global $pdo;
+    $sql="select * from $table where id ='$id'";
+    $row=$pdo->query($sql)->fetch();
+    if(empty($row)){
+        return "無相關資料";
     }
-    
+    return $row;
 }
+
 
 
 ?>
