@@ -15,14 +15,16 @@ include_once "base.php";
  */
 $table='invoice';
 
-$row=find('invoice',1);
+$row=find($table,21);
 echo "<pre>";
 print_r($row);
 echo "</pre>";
 // 因為在function find()中使用fetch的話會把資料的欄位跟索引值都索引出來，所以，多出的索引欄位資料會導致錯誤
 
 $row['code']="zz";
-
+$row['expend']="50";
+$row['year']="2021";
+$row['period']="2";
 
 // update 一定有id的值所以不用設置第三個變數來增加收尋條件
 update($table,$row);
@@ -47,13 +49,15 @@ function update($table,$arg){
     $sql="update $table ";
 
     foreach($arg as $key => $value){
+        // 多加一個判斷式
+        if($key!='id'){
         $tmp[]=sprintf("`%s`='%s'",$key,$value);
+        }
     }
+
     $sql=$sql . "set" .implode(',',$tmp)." where `id` ='".$arg['id']."'";
-
-
     echo $sql;
-    // return ;
+    return $pdo->exec($sql);
 }
 
 ?>
