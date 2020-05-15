@@ -7,6 +7,8 @@
 
 
     /**
+     * 尋找資料
+     * 
      * "select * from $table ";
      * "select * from $table where ???='xxx'";
      * "select * from $table where ???='xxx' && ???='xxx' ...";

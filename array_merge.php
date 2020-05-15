@@ -13,11 +13,10 @@ echo "<pre>". print_r($merge)."<pre>";
 
 echo "test";
 
-$test=am($c,$b,$a);
 
 echo "<hr>";
 
-am($c,$b,$d);
+$test=am($c,$b,$a);
 
 print_r($test);
 
@@ -33,10 +32,10 @@ function am($c,...$b){
         if(is_array($item)){
             foreach($item as $i){
                 $array[]=$i;
+                echo $i;
             }
         }
     }
-    echo $array;    
 
     return $array;
 }

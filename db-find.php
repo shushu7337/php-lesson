@@ -11,7 +11,7 @@ session_start();
 //     echo "<br>";
 //     echo $row['expend'];
 // }
-$row=find('invoice',5);
+$row=find('invoice',30);
 if(is_array($row)){
     echo $row['number'].'<br>';
     echo $row['expend'];
@@ -19,6 +19,16 @@ if(is_array($row)){
     echo $row;
 }
 
+
+
+// 導頁面函式
+function to($url){
+    header("location:".$url);
+}
+
+
+
+// 尋找id含式
 function find($table,$id){
     global $pdo;
     $sql="select * from $table where id ='$id'";
