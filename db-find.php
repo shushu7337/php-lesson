@@ -28,7 +28,10 @@ function to($url){
 
 
 
-// 尋找id含式
+// 尋找id 函式
+// 2020-05-15可思考加入其他收尋條件
+
+
 function find($table,$id){
     global $pdo;
     $sql="select * from $table where id ='$id'";
