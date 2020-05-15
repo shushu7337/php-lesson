@@ -43,7 +43,7 @@ function find($table,$id){
     return $row;
 }
 
-
+// $arg 為陣列
 function update($table,$arg){
     global $pdo;
     $sql="update $table ";

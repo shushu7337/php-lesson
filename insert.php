@@ -9,7 +9,7 @@ include_once "base.php";
  * 
  * 
  */
-
+// 如果是新增用的資料，不會有id欄位
 $data=[
     "code"=>"dd",
     "number"=>"1122334455",
@@ -29,7 +29,7 @@ echo insert($table,$data);
 
 //   -----   type1   ------
 
-
+// $arg 為陣列
 function insert($table,$arg){
 
     global $pdo;
