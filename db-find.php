@@ -35,7 +35,7 @@ function to($url){
 function find($table,$id){
     global $pdo;
     $sql="select * from $table where id ='$id'";
-    $row=$pdo->query($sql)->fetch();
+    $row=$pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     if(empty($row)){
         return "無相關資料";
     }
