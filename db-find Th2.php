@@ -38,7 +38,7 @@ function find($table,...$id){
     }else{
         return "無相關資料";
     }
-    return $pdo->query($sql)->fetchAll();
+    return $pdo->query($sql)->fetch();
 }
 
 ?>

@@ -9,17 +9,10 @@ include "base.php";
 echo "<hr>";
 
 $row=find('invoice',4);
-if(is_array($row)){
-    echo $row['id'].'<br>';
-    echo $row['number'].'<br>';
-    echo $row['expend'];
-    echo "<pre>";
-    print_r($row);
-    echo "</pre>";
-}else{
-    echo $row;
-    echo "<hr>";
-}
+
+echo "<pre>";
+print_r($row);
+echo "</pre>";
 
 $row=find('invoice',['year'=>'2020','period'=>'1']);
 if(is_array($row)){
@@ -56,8 +49,9 @@ function find($table,$arg){
         }
         $sql=$sql . " where " . implode(" && ", $tmp);
     }else{
-       $sql=$sql . "where `id`='$arg'";
+       $sql=$sql . " where `id`='$arg'";
     }
+    echo $sql;
     return $pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 }
 
