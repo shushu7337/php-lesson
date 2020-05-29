@@ -1,57 +1,31 @@
 <?php
 
-    $a=false;
-    echo !$a;
-    echo "<hr>";
-    echo $a;
-    $b=1;
-    echo $b++;
-    echo "<hr>";
-    // 算術運算子 +,-,*,/
-    
-    $a=2;
-    $b=5;
-    echo $a+$b;
-    echo "<hr>";
+$dsn="mysql:host=localhost;charset=utf8;dbname=school";
+$pdo=new PDO($dsn,"root","");
+date_default_timezone_set("Asia/Taipei");
+$sql="insert into student(`id`,
+                        `acc`,
+                        `pw`,
+                        `name`,
+                        `email`,
+                        `tel`,
+                        `create_time`,
+                        `update_time`,
+                        `birthday`) 
+                values(null,
+                       'shu',
+                       '7337',
+                       '張書豪',
+                       'dreamsky1208@gmail.com',
+                       '0919921618',
+                       '".date("Y-m-d H:i:s")."',
+                       '".date("Y-m-d H:i:s")."',
+                       '1992-12-08')";
 
-    // 字串運算子
+echo $sql;
+echo "<br>";
+//$pdo->query($sql);
+echo $pdo->query($sql);  //不回傳資料，但回傳成功或失敗(1 or 0) //{inset} {delete} {update} 不會回傳
+echo "資料已新增";
 
-    $a="A";
-    $b="B";
-    echo $a;
-    echo "<br>";
-    echo $b;
-    $c=$a . $b;
-    $d=$a + $b;
-    echo "<hr>";
-    echo $c;
-    echo "<hr>";
-    echo $d;
-    echo "<br>";
-    $e="123";
-    $f="333";
-    echo $e;
-    echo "<br>";
-    echo $f;
-
-    echo "<br>";
-    // 三元運算子
-    $a=6;
-    echo ($a>0)?"很貴":"免費";
-    echo "<hr>";
-
-    if($a>0){
-        echo "很貴";
-    }
-    else{
-        echo "免費";
-    }
-
-    echo"<hr>";
-echo "hello world";
-$aa;
-$bb;
-
-$ee;
-$cc;
 ?>
