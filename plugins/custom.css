@@ -1,0 +1,249 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+body{
+    background: #000;
+    background-size: cover;
+    background-image:
+      linear-gradient(rgba(73, 179, 206, 0.15) 1px, transparent 0),
+      linear-gradient(90deg, rgba(200,200,200,0.15) 1px, transparent 0),
+      linear-gradient(rgba(150,150,150,.25) 1px, transparent 0),
+      linear-gradient(90deg, rgba(150,150,150,.25) 1px, transparent 0);
+    background-size: 
+      5px 5px, 5px 5px, 50px 50px, 50px 50px;
+    opacity: 0.9;
+      
+}
+h1 { 
+  
+  color: #111;
+  font-size: 7.5em;
+  text-shadow: 0 0 20px #FF005B;
+  /* font-family: "Fredericka the Great", cursive; */
+  font-family: 'Iceland';
+  font-weight: bold;
+}
+h1 span{ 
+  animation:animate 2.25s linear infinite;
+}
+h1 span:nth-child(1){
+  animation-delay: 0.25s;
+}
+h1 span:nth-child(2){
+  animation-delay: 0.75s;
+}
+h1 span:nth-child(3){
+  animation-delay: 1.25s;
+}
+h1 span:nth-child(4){
+  animation-delay: 1.75s;
+}
+h1 span:nth-child(5){
+  animation-delay: 2.25s;
+}
+
+@keyframes animate {
+  0%{
+      color: #fff;
+      filter: blur(2px);
+      text-shadow: 0 0 10px #e456b5,
+                  0 0 20px #9900ff,
+                  0 0 40px #00b3ff,
+                  0 0 80px #00ff88,
+                  0 0 120px #fbff00,
+                  0 0 200px #ff5100,
+                  0 0 300px #00fff2,
+                  0 0 400px #00ff9d;
+  }
+  5%,95%{
+      color: #111;
+      filter: blur(0px);
+      text-shadow:none;
+  }
+  100%{
+    text-shadow: 0 0 20px #FF005B;
+  }
+}
+
+
+/* .neon:after{
+  content: attr(data-text);
+  position: relative;
+  top: 0;
+  left: 0; 
+  z-index: -1;
+  color: #ff005b;
+  filter: blur(15px); 
+}
+.neon:before{
+    content: '';
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fe3a80;
+    z-index: -2;
+    opacity: .5;
+    filter: blur(40px);
+} */
+thead {
+  font-family: "Monoton", cursive;
+}
+a:link {
+  color: #FFF;
+} /*連結提示*/
+a:visited {
+  color: #FFF;
+} /*已拜訪過過*/
+a:hover {
+  color: #FFF;
+} /*滑過*/
+a:active {
+  color: #FFF;
+} /*按下瞬間*/
+
+.calendar {
+  /* background: rgb(182, 205, 219); */
+  text-shadow: 0 0 5px rgb(94, 99, 119);
+  height: 500px;
+}
+.main{
+  height: 400px;
+}
+.introm{
+  height: 50px;
+  font-size: 40px;
+  
+}
+table td {
+  border-radius: 50%;
+  text-align: center;
+  color: rgb(255, 255, 255);
+
+  width: 60px;
+  height: 60px;
+  font-size: 20px;
+  box-shadow: 1px 2px 1px rgb(148, 247, 164);
+}
+td:hover{
+  background:rgb(188, 247, 219);
+  color: #000;
+}
+
+.callyear{
+  color: #fff;
+  font-family: 'Iceland';
+}
+
+table {
+  /* background: #888;  */
+  border-collapse: separate;
+  border-spacing: 10px;
+  font-family: 'Iceland';
+  
+}
+.date{
+  color: white;
+  height: 50px;
+}
+
+
+
+/* flipcard */
+
+img{
+  height: 350;
+  width: 245;
+}
+.caard{
+  position: relative;
+  width: 245px;
+  height: 350px;
+  transform-style: preserve-3d;
+  perspective: 500px;
+  transition: 0.5s;
+  
+}
+.caard .front{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  backface-visibility: hidden;
+  transform: rotateX(0deg);
+  transition: 0.3s;
+}
+.caard:hover .front{
+  transform: rotateX(-180deg);
+}
+/* icon前導圖 */
+.caard .back:before{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.1);
+}
+.caard .back{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #222222;
+  background: repeating-linear-gradient(45deg, #2b2b2b 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
+  backface-visibility: hidden;
+  transform: rotateX(180deg);
+  transition: 0.3s;
+}
+.caard:hover .back{
+  transform: rotateX(0deg);
+}
+.caard .back .details{
+  position: absolute;
+  top:50%;
+  transform: rotateY(-50%);
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.caard .back .details h2{
+  margin: 0;
+  padding: 0px;
+  font-size: 80px;
+  transform: translateY(-50%);
+  font-family: 'Iceland';
+  color: #fff;
+  z-index: -1;
+}
+.caard .back .details h2 span{
+  color: #fff;
+  font-size:30px;
+  font-family: 'Iceland';
+}
+.social-icons{
+  padding: 10px 0;
+}
+.social-icons a{
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  background:#262626;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50%;
+  transition: 0.5s;
+  transform: translateY(-80%);
+}
+.social-icons a .fa{
+  line-height: 36px;
+  
+}
+
+.social-icons a:hover{
+  background: #e91e63;
+}
